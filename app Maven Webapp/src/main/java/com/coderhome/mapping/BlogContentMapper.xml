@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coderhome.dao.BlogContentMapper" >
+  <resultMap id="BaseResultMap" type="com.coderhome.model.BlogContent" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="readnum" property="readnum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="createuser" property="createuser" jdbcType="INTEGER" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.coderhome.model.BlogContent" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, createtime, readnum, status, createuser, introduction
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog_content
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from blog_content
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.coderhome.model.BlogContent" >
+    insert into blog_content (id, title, createtime, 
+      readnum, status, createuser, 
+      introduction, content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{readnum,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{createuser,jdbcType=INTEGER}, 
+      #{introduction,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coderhome.model.BlogContent" >
+    insert into blog_content
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="readnum != null" >
+        readnum,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createuser != null" >
+        createuser,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readnum != null" >
+        #{readnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coderhome.model.BlogContent" >
+    update blog_content
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readnum != null" >
+        readnum = #{readnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        createuser = #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.coderhome.model.BlogContent" >
+    update blog_content
+    set title = #{title,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      readnum = #{readnum,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=INTEGER},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coderhome.model.BlogContent" >
+    update blog_content
+    set title = #{title,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      readnum = #{readnum,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=INTEGER},
+      introduction = #{introduction,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

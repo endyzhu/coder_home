@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coderhome.dao.BlogCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.coderhome.model.BlogComment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="content_id" property="contentId" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="praise" property="praise" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, content_id, userid, type, comment, praise
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from blog_comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from blog_comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.coderhome.model.BlogComment" >
+    insert into blog_comment (id, content_id, userid, 
+      type, comment, praise
+      )
+    values (#{id,jdbcType=INTEGER}, #{contentId,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{praise,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coderhome.model.BlogComment" >
+    insert into blog_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="contentId != null" >
+        content_id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="praise != null" >
+        praise,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="contentId != null" >
+        #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="praise != null" >
+        #{praise,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coderhome.model.BlogComment" >
+    update blog_comment
+    <set >
+      <if test="contentId != null" >
+        content_id = #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="praise != null" >
+        praise = #{praise,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coderhome.model.BlogComment" >
+    update blog_comment
+    set content_id = #{contentId,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
+      praise = #{praise,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

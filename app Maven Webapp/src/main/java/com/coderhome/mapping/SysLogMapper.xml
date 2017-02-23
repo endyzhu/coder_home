@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coderhome.dao.SysLogMapper" >
+  <resultMap id="BaseResultMap" type="com.coderhome.model.SysLog" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.coderhome.model.SysLog" extends="BaseResultMap" >
+    <result column="params" property="params" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    params
+  </sql>
+  <insert id="insert" parameterType="com.coderhome.model.SysLog" >
+    insert into sys_log (id, userid, url, 
+      type, params)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{params,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coderhome.model.SysLog" >
+    insert into sys_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="params != null" >
+        params,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null" >
+        #{params,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

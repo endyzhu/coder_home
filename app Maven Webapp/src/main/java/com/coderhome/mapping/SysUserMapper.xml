@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coderhome.dao.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.coderhome.model.SysUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="loginname" property="loginname" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="usertype" property="usertype" jdbcType="VARCHAR" />
+    <result column="lastlogin" property="lastlogin" jdbcType="TIMESTAMP" />
+    <result column="loginip" property="loginip" jdbcType="VARCHAR" />
+    <result column="loginnum" property="loginnum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="failnum" property="failnum" jdbcType="INTEGER" />
+    <result column="locktime" property="locktime" jdbcType="TIMESTAMP" />
+    <result column="unlocktime" property="unlocktime" jdbcType="TIMESTAMP" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, loginname, nickname, passwd, salt, usertype, lastlogin, loginip, loginnum, status, 
+    failnum, locktime, unlocktime, reason
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.coderhome.model.SysUser" >
+    insert into sys_user (id, loginname, nickname, 
+      passwd, salt, usertype, 
+      lastlogin, loginip, loginnum, 
+      status, failnum, locktime, 
+      unlocktime, reason)
+    values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{passwd,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{usertype,jdbcType=VARCHAR}, 
+      #{lastlogin,jdbcType=TIMESTAMP}, #{loginip,jdbcType=VARCHAR}, #{loginnum,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{failnum,jdbcType=INTEGER}, #{locktime,jdbcType=TIMESTAMP}, 
+      #{unlocktime,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coderhome.model.SysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginname != null" >
+        loginname,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="passwd != null" >
+        passwd,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="usertype != null" >
+        usertype,
+      </if>
+      <if test="lastlogin != null" >
+        lastlogin,
+      </if>
+      <if test="loginip != null" >
+        loginip,
+      </if>
+      <if test="loginnum != null" >
+        loginnum,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="failnum != null" >
+        failnum,
+      </if>
+      <if test="locktime != null" >
+        locktime,
+      </if>
+      <if test="unlocktime != null" >
+        unlocktime,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginname != null" >
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="lastlogin != null" >
+        #{lastlogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginip != null" >
+        #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="loginnum != null" >
+        #{loginnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="failnum != null" >
+        #{failnum,jdbcType=INTEGER},
+      </if>
+      <if test="locktime != null" >
+        #{locktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unlocktime != null" >
+        #{unlocktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coderhome.model.SysUser" >
+    update sys_user
+    <set >
+      <if test="loginname != null" >
+        loginname = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        usertype = #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="lastlogin != null" >
+        lastlogin = #{lastlogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginip != null" >
+        loginip = #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="loginnum != null" >
+        loginnum = #{loginnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="failnum != null" >
+        failnum = #{failnum,jdbcType=INTEGER},
+      </if>
+      <if test="locktime != null" >
+        locktime = #{locktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unlocktime != null" >
+        unlocktime = #{unlocktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coderhome.model.SysUser" >
+    update sys_user
+    set loginname = #{loginname,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      usertype = #{usertype,jdbcType=VARCHAR},
+      lastlogin = #{lastlogin,jdbcType=TIMESTAMP},
+      loginip = #{loginip,jdbcType=VARCHAR},
+      loginnum = #{loginnum,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      failnum = #{failnum,jdbcType=INTEGER},
+      locktime = #{locktime,jdbcType=TIMESTAMP},
+      unlocktime = #{unlocktime,jdbcType=TIMESTAMP},
+      reason = #{reason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

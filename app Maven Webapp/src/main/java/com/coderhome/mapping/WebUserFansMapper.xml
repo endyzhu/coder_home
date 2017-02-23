@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coderhome.dao.WebUserFansMapper" >
+  <resultMap id="BaseResultMap" type="com.coderhome.model.WebUserFans" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="masterid" property="masterid" jdbcType="INTEGER" />
+    <result column="funsid" property="funsid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="focustime" property="focustime" jdbcType="TIMESTAMP" />
+    <result column="unfocustime" property="unfocustime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, masterid, funsid, status, focustime, unfocustime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from web_user_fans
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from web_user_fans
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.coderhome.model.WebUserFans" >
+    insert into web_user_fans (id, masterid, funsid, 
+      status, focustime, unfocustime
+      )
+    values (#{id,jdbcType=INTEGER}, #{masterid,jdbcType=INTEGER}, #{funsid,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{focustime,jdbcType=TIMESTAMP}, #{unfocustime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coderhome.model.WebUserFans" >
+    insert into web_user_fans
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="masterid != null" >
+        masterid,
+      </if>
+      <if test="funsid != null" >
+        funsid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="focustime != null" >
+        focustime,
+      </if>
+      <if test="unfocustime != null" >
+        unfocustime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="masterid != null" >
+        #{masterid,jdbcType=INTEGER},
+      </if>
+      <if test="funsid != null" >
+        #{funsid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="focustime != null" >
+        #{focustime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unfocustime != null" >
+        #{unfocustime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coderhome.model.WebUserFans" >
+    update web_user_fans
+    <set >
+      <if test="masterid != null" >
+        masterid = #{masterid,jdbcType=INTEGER},
+      </if>
+      <if test="funsid != null" >
+        funsid = #{funsid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="focustime != null" >
+        focustime = #{focustime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unfocustime != null" >
+        unfocustime = #{unfocustime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coderhome.model.WebUserFans" >
+    update web_user_fans
+    set masterid = #{masterid,jdbcType=INTEGER},
+      funsid = #{funsid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      focustime = #{focustime,jdbcType=TIMESTAMP},
+      unfocustime = #{unfocustime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

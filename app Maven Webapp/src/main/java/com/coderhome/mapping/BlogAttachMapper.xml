@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coderhome.dao.BlogAttachMapper" >
+  <resultMap id="BaseResultMap" type="com.coderhome.model.BlogAttach" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="attachname" property="attachname" jdbcType="VARCHAR" />
+    <result column="attachdir" property="attachdir" jdbcType="VARCHAR" />
+    <result column="uuidname" property="uuidname" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="uploaduser" property="uploaduser" jdbcType="INTEGER" />
+    <result column="uploadtime" property="uploadtime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="audittime" property="audittime" jdbcType="TIMESTAMP" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="audituser" property="audituser" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, attachname, attachdir, uuidname, type, uploaduser, uploadtime, status, audittime, 
+    reason, audituser
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from blog_attach
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from blog_attach
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.coderhome.model.BlogAttach" >
+    insert into blog_attach (id, attachname, attachdir, 
+      uuidname, type, uploaduser, 
+      uploadtime, status, audittime, 
+      reason, audituser)
+    values (#{id,jdbcType=INTEGER}, #{attachname,jdbcType=VARCHAR}, #{attachdir,jdbcType=VARCHAR}, 
+      #{uuidname,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{uploaduser,jdbcType=INTEGER}, 
+      #{uploadtime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{audittime,jdbcType=TIMESTAMP}, 
+      #{reason,jdbcType=VARCHAR}, #{audituser,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coderhome.model.BlogAttach" >
+    insert into blog_attach
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="attachname != null" >
+        attachname,
+      </if>
+      <if test="attachdir != null" >
+        attachdir,
+      </if>
+      <if test="uuidname != null" >
+        uuidname,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="uploaduser != null" >
+        uploaduser,
+      </if>
+      <if test="uploadtime != null" >
+        uploadtime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="audittime != null" >
+        audittime,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="audituser != null" >
+        audituser,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="attachname != null" >
+        #{attachname,jdbcType=VARCHAR},
+      </if>
+      <if test="attachdir != null" >
+        #{attachdir,jdbcType=VARCHAR},
+      </if>
+      <if test="uuidname != null" >
+        #{uuidname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="uploaduser != null" >
+        #{uploaduser,jdbcType=INTEGER},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="audittime != null" >
+        #{audittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="audituser != null" >
+        #{audituser,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coderhome.model.BlogAttach" >
+    update blog_attach
+    <set >
+      <if test="attachname != null" >
+        attachname = #{attachname,jdbcType=VARCHAR},
+      </if>
+      <if test="attachdir != null" >
+        attachdir = #{attachdir,jdbcType=VARCHAR},
+      </if>
+      <if test="uuidname != null" >
+        uuidname = #{uuidname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="uploaduser != null" >
+        uploaduser = #{uploaduser,jdbcType=INTEGER},
+      </if>
+      <if test="uploadtime != null" >
+        uploadtime = #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="audittime != null" >
+        audittime = #{audittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="audituser != null" >
+        audituser = #{audituser,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coderhome.model.BlogAttach" >
+    update blog_attach
+    set attachname = #{attachname,jdbcType=VARCHAR},
+      attachdir = #{attachdir,jdbcType=VARCHAR},
+      uuidname = #{uuidname,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      uploaduser = #{uploaduser,jdbcType=INTEGER},
+      uploadtime = #{uploadtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      audittime = #{audittime,jdbcType=TIMESTAMP},
+      reason = #{reason,jdbcType=VARCHAR},
+      audituser = #{audituser,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
