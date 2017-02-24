@@ -21,6 +21,12 @@
     id, loginname, nickname, passwd, salt, usertype, lastlogin, loginip, loginnum, status, 
     failnum, locktime, unlocktime, reason
   </sql>
+  <select id="selectByLoginname" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where loginname = #{loginname,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

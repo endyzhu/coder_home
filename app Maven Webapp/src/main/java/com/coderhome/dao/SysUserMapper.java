@@ -9,6 +9,8 @@ public interface SysUserMapper {
 
     int insertSelective(SysUser record);
 
+    SysUser selectByLoginname(String loginname);
+    
     SysUser selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(SysUser record);

@@ -31,4 +31,16 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
+	@Override
+	public SysUser getUserByLoginname(String loginname) {
+		SysUser user = sysUserMapper.selectByLoginname(loginname);
+		return user;
+	}
+
+	@Override
+	public int updateUserPasswd(SysUser userInfo) {
+		int i = sysUserMapper.updateByPrimaryKeySelective(userInfo);
+		return i;
+	}
+
 }
